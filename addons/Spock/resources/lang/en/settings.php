@@ -6,6 +6,9 @@ return [
     'environments' => 'Environments',
     'environments_instruct' => 'Spock will only run on the specified environments. The current environment is `'. app()->environment() . '`',
 
+    'git_options' => 'Git Options',
+    'git_options_instruct' => 'Command line options for the git executable.',
+
     'git_push' => 'Git Push',
     'git_push_instruct' => 'Whether Spock should perform a `git push` after the default git commands.',
 

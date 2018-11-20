@@ -1,6 +1,8 @@
 fields:
   environments:
     type: tags
+  git_options:
+    type: text
   git_push:
     type: toggle
   git_username:

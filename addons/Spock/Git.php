@@ -31,15 +31,16 @@ class Git
     public function commands()
     {
         $commands = array_get($this->config, 'commands_before', []);
+        $options = array_get($this->config, 'git_options', '');
 
         foreach ($this->event->affectedPaths() as $path) {
-            $commands[] = "git add {$path}";
+            $commands[] = "git {$options} add {$path}";
         }
 
         $commands[] = $this->commitCommand();
 
         if (array_get($this->config, 'git_push')) {
-            $commands[] = 'git push';
+            $commands[] = "git {$options} push";
         }
 
         if ($after = array_get($this->config, 'commands_after', [])) {
@@ -58,7 +59,8 @@ class Git
      */
     protected function commitCommand()
     {
-        $parts = ['git'];
+        $options = array_get($this->config, 'git_options', '');
+        $parts = ['git', $options];
 
         if ($username = array_get($this->config, 'git_username')) {
             $parts[] = sprintf('-c "user.name=%s"', $username);
